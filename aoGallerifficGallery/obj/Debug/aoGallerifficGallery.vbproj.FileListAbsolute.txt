@@ -1,0 +1,8 @@
+C:\Users\kmaAdmin\Documents\GitHub\aoGallerifficGallery\aoGallerifficGallery\bin\Debug\aoGallerifficGallery.dll
+C:\Users\kmaAdmin\Documents\GitHub\aoGallerifficGallery\aoGallerifficGallery\bin\Debug\aoGallerifficGallery.pdb
+C:\Users\kmaAdmin\Documents\GitHub\aoGallerifficGallery\aoGallerifficGallery\bin\Debug\aoGallerifficGallery.xml
+C:\Users\kmaAdmin\Documents\GitHub\aoGallerifficGallery\aoGallerifficGallery\obj\Debug\Resources.resources
+C:\Users\kmaAdmin\Documents\GitHub\aoGallerifficGallery\aoGallerifficGallery\obj\Debug\aoGallerifficGallery.vbproj.GenerateResource.Cache
+C:\Users\kmaAdmin\Documents\GitHub\aoGallerifficGallery\aoGallerifficGallery\obj\Debug\aoGallerifficGallery.dll
+C:\Users\kmaAdmin\Documents\GitHub\aoGallerifficGallery\aoGallerifficGallery\obj\Debug\aoGallerifficGallery.xml
+C:\Users\kmaAdmin\Documents\GitHub\aoGallerifficGallery\aoGallerifficGallery\obj\Debug\aoGallerifficGallery.pdb

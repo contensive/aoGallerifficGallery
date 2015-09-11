@@ -1,15 +1,12 @@
-Imports System
-Imports System.Collections.Generic
-Imports System.Text
-Imports Contensive.BaseClasses
+
 Namespace Contensive.Addons.aoGallerifficGallery
     '
     Public Class galleryClass
         Inherits Contensive.BaseClasses.AddonBaseClass
         '
         Public Overrides Function Execute(ByVal CP As BaseClasses.CPBaseClass) As Object
-            Dim s As String = ""    '   string
             Try
+                Dim s As String = ""    '   string
                 Dim subS As String = "" '   sub string
                 Dim inS As String = ""  '   inner string
                 Dim aiS As String = ""  '   anchor image string
@@ -22,8 +19,6 @@ Namespace Contensive.Addons.aoGallerifficGallery
                 Dim cacheName As String = ""
                 Dim initialized As Boolean = CP.Utils.EncodeBoolean(CP.Site.GetProperty("Addon Initialized - Galleriffic Gallery"))
                 Dim imgPointer As Integer = 0
-                Dim mydate As DateTime = DateTime.Now
-                Dim isAuthoring As Boolean = CP.User.IsAuthoring("")
                 '
                 If Not initialized Then
                     For imgPointer = 1 To 5
@@ -47,9 +42,7 @@ Namespace Contensive.Addons.aoGallerifficGallery
                         s = CP.Html.div(CP.Html.div("<b>Administrator</b><br /><br />A Gallerffic Image Gallery was not set for this instance. To select a Gallery, turn on Advanced Edit and select a Galleriffic Gallery from the drop down on the Addon's Options toolbar.", , "ccHintWrapperContent"), , "ccHintWrapper").Replace("<div ", "<div style=""margin: 3px;"" ")
                     End If
                 Else
-                    If Not isAuthoring Then
-                        s = CP.Cache.Read(cacheName)
-                    End If
+                    s = CP.Cache.Read(cacheName)
                     '
                     If s = "" Then
                         cs.Open("Galleriffic Images", "gallerifficImageGalleryID=" & galleryID, "sortOrder")
@@ -58,11 +51,7 @@ Namespace Contensive.Addons.aoGallerifficGallery
                             image = CP.Site.FilePath & cs.GetText("imageFileName")
                             description = cs.GetText("description")
                             '
-                            aiS = ""
-                            If isAuthoring Then
-                                aiS = cs.GetEditLink()
-                            End If
-                            aiS &= "<a class=""thumb"" href=""" & image & """ title=""" & title & """><div style=""background: center no-repeat url(" & image & "); background-size: cover;""><img class=""thumbSpacer"" src=""/images/spacer.gif"" alt=""" & title & """ /></div></a>"
+                            aiS = cs.GetEditLink() & "<a class=""thumb"" href=""" & image & """ title=""" & title & """><div style=""background: center no-repeat url(" & image & "); background-size: cover;""><img class=""thumbSpacer"" src=""/images/spacer.gif"" alt=""" & title & """ /></div></a>"
                             '
                             subS = CP.Html.div("<a target=""_blank"" href=""" & image & """>View Full Size</a>", , "download")
                             subS += CP.Html.div(title, , "image-title")
@@ -74,7 +63,7 @@ Namespace Contensive.Addons.aoGallerifficGallery
                         Loop
                         cs.Close()
                         '
-                        If isAuthoring Then
+                        If CP.User.IsAuthoring("Galleriffic Images") Then
                             adS += CP.Content.GetAddLink("Galleriffic Images", "", False, True)
                         End If
                         '
@@ -88,16 +77,14 @@ Namespace Contensive.Addons.aoGallerifficGallery
                         '
                         s = CP.Html.div(CP.Html.div(s, , , "gallerifficContainer"), , , "gallerifficPage")
                         '
-                        If not isAuthoring Then
-                            CP.Cache.Save(cacheName, s, "Galleriffic Images,Galleriffic Image Galleries")
-                        End If
+                        CP.Cache.Save(cacheName, s, "Galleriffic Images,Galleriffic Image Galleries")
                     End If
                 End If
                 '
+                Return s
             Catch ex As Exception
                 CP.Site.ErrorReport(ex.Message)
             End Try
-            Return s
         End Function
     End Class
     '
